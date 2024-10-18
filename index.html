@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>InstantInsights</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Instant Insights</a>
+          
+          <nav class="nav">
+           
+            <a id="general" class="nav-link" href="#">General</a>
+            <a id ="sports" class="nav-link" href="#">Sports</a>
+            <a id="science" class="nav-link" href="#">Science</a>
+            <a id="tech" class="nav-link" href="#">Technology</a>
+            <a id="entertainment" class="nav-link" href="#">Entertainment</a>
+
+            <form class="d-flex" role="search">
+              <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button id="search" class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </nav>
+          </div>
+        </div>
+      </nav>
+      
+      <div class="container">
+        <h1>Welcome to Instant Insights(<span id="resultCount"></span>Results)</span></h1>
+        <div class="row content">
+      
+           
+
+          </div>
+          <button id="prev" class="btn btn-primary">Prev Page</button>
+          <button id="next" class="btn btn-primary">Next Page</button>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+
+    let currentCate="sports"
+    let currentPage=1;
+   let currenCountry="in"
+
+    const fetchNews=async(page,cat)=>{
+    
+    console.log('hello')
+
+    
+    /*var url = 'https://newsapi.org/v2/top-headlines?' +
+          'country=in&'+
+          'category='+cat+
+          '&pageSize=5&'+
+          'page='+page+
+          '&apiKey=541db11d43744660842c841ee2a436ea';
+      var req = new Request(url);
+      let a=await fetch(req);
+      console.log(a);
+      */
+      var url = 'https://newsapi.org/v2/everything?' +
+          'q=Apple&' +
+          'from=2024-09-11&' +
+          'sortBy=popularity&' +
+          'apiKey=541db11d43744660842c841ee2a436ea';
+
+var req = new Request(url);
+
+fetch(req)
+    .then(function(response) {
+        console.log(response.json());
+    })
+    
+    // let response= await a.json();
+   // let response={"status":"ok","totalResults":70,"articles":[{"source":{"id":"the-times-of-india","name":"The Times of India"},"author":"TOI Sports Desk","title":"'They have to find those players...': Virender Sehwag on what Pakistan need to do to remain competitive i - The Times of India","description":"Cricket News: Former India opening batter Virender Sehwag has urged Pakistan to develop aggressive batsmen to remain competitive in T20 cricket. Pakistan, led by Ba","url":"https://timesofindia.indiatimes.com/sports/cricket/icc-mens-t20-world-cup/they-have-to-find-those-players-virender-sehwag-on-what-pakistan-need-to-do-to-remain-competitive-in-t20-cricket/articleshow/111048709.cms","urlToImage":"https://static.toiimg.com/thumb/msid-111048909,width-1070,height-580,imgsize-75592,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg","publishedAt":"2024-06-17T03:59:00Z","content":null},{"source":{"id":null,"name":"NDTV News"},"author":"NDTV Sports Desk","title":"Bangladesh vs Nepal Highlights, T20 World Cup 2024: Bangladesh Thrash Nepal In Low-Scoring Thriller,.. - NDTV Sports","description":"T20 World Cup 2024, BAN vs NEP Highlights: Tanzim Hasan Sakib's deadly spell propelled Bangladesh to a stunning victory over Nepal in their T20 World Cup 2024, Group D match on Monday","url":"https://sports.ndtv.com/t20-world-cup-2024/bangladesh-vs-nepal-live-score-icc-t20-world-cup-2024-today-37-match-ban-vs-nep-16-may-updates-5903263","urlToImage":"https://c.ndtvimg.com/2024-06/iu7agnl_tanzim-hasan-sakib_625x300_17_June_24.jpg","publishedAt":"2024-06-17T03:33:45Z","content":null},{"source":{"id":null,"name":"NDTV News"},"author":"Press Trust of India","title":"On T20 World Cup Capitulation, Babar Azam Throws Team Under Bus. Says: \"Can't Play...\" - NDTV Sports","description":"Pakistan skipper Babar Azam rued the mistakes his side made against India and the USA in its earlier Group A matches","url":"https://sports.ndtv.com/cricket/babar-azam-to-continue-as-pakistan-captain-heres-what-the-star-batter-said-5904810","urlToImage":"https://c.ndtvimg.com/2024-06/8ib8f2ug_babar-azam_625x300_07_June_24.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=675","publishedAt":"2024-06-17T02:48:21Z","content":"Pakistan skipper Babar Azam rued the mistakes his side made against India and the USA in its earlier Group A matches, even as the former champions bid adieu to the T20 World Cup with a consolation th… [+2414 chars]"},{"source":{"id":null,"name":"NDTV News"},"author":"NDTV Sports Desk","title":"Once Fierce Competitor To Sachin Tendulkar, This Pakistan Great's Helpless Admission: \"We Are Declin.. - NDTV Sports","description":"Pakistan's elimination was confirmed on Friday when USA joined arch-rivals India as the second team from Group A in the Super Eight round, following a washout in Florida.","url":"https://sports.ndtv.com/t20-world-cup-2024/once-fierce-competitor-to-sachin-tendulkar-this-pakistan-greats-helpless-admission-we-are-declining-5901497","urlToImage":"https://c.ndtvimg.com/2024-06/l471u7c_team-pakistan-afp_625x300_07_June_24.jpg?im=FeatureCrop,algorithm=dnn,width=1200,height=675","publishedAt":"2024-06-17T02:36:22Z","content":"Former Pakistan captain Inzamam-ul-Haq has opened up on the team's elimination from the T20 World Cup. Pakistan failed to get out of the group stage after losing to USA and India, respectively. India… [+1887 chars]"},{"source":{"id":null,"name":"Hindustan Times"},"author":"HT Sports Desk","title":"How Rahul Dravid, Rohit Sharma decided on Virat Kohli, Rishabh Pant's new batting role for T20 World Cup - Hindustan Times","description":"Although Virat Kohli incurred a forgettable start to the T20 World Cup, the Rishabh Pant strategy proved to be a masterstroke from Team India. | Crickit","url":"https://www.hindustantimes.com/cricket/how-rahul-dravid-rohit-sharma-decided-on-virat-kohli-rishabh-pants-new-batting-role-for-t20-world-cup-101718587948448.html","urlToImage":"https://www.hindustantimes.com/ht-img/img/2024/06/17/1600x900/pant_kohli_canada_1718588325092_1718588334833.jpg","publishedAt":"2024-06-17T02:27:05Z","content":"Even on the eve of India's T20 World Cup warm-up game earlier this month against Bangladesh, experts and veteran cricketers discussed the likely batting line-up for the ICC tournament. With the playe… [+2513 chars]"},{"source":{"id":null,"name":"Zoom"},"author":"Megha Mallick","title":"'I Bat According To The Wicket..', Wasim Akram Reveals Chat With Virat Kohli On Chasing Targets - Times Now","description":"Skipper Babar Azam saw his side home with his gritty innings of 32* (34) along with valuable contributions from Abbas Afridi (17 off 21) and Shaheen Afridi (13* off 5). While commentating on the match, Wasim Akram highlighted why Virat Kohli has been known as…","url":"https://www.timesnownews.com/sports/cricket/i-bat-according-to-the-wicket-wasim-akram-reveals-chat-with-virat-kohli-on-chasing-targets-article-111047271","urlToImage":"https://static.tnn.in/thumb/msid-111047271,width-1280,height-720,resizemode-75/111047271.jpg","publishedAt":"2024-06-17T02:00:38Z","content":"India vs Afghanistan In T20Is: Most Wins, Runs, Wickets, Sixes, Highest Score - All You Need To Know"},{"source":{"id":null,"name":"Cricket.one"},"author":"Debashis Sarangi","title":"[Watch] Tanzim Gives 'Death Stare' & 'Pushes' Rohit Paudel During A Heated Exchange - OneCricket","description":"The incident occurred during the second half of the game when the two players had a verbal spat in the field.","url":"https://cricket.one/match-hub/watch-tanzim-gives-death-stare-pushes-rohit-paudel-during-a-heated-exchange/666f985cf0876bf655175b53","urlToImage":"https://onecricketnews.akamaized.net/parth-editor/oc-dashboard/news-images-prod/1718589449502_BAN_NEP_Fight.jpg","publishedAt":"2024-06-17T01:58:52Z","content":"Fight between Tanzim &amp; Rohit [X]\r\nBangladesh's ace speedster Tanzim Hasan Sakib was involved in a heated exchange with Nepal skipper Rohit Paudel in the ongoing T20 World Cup encounter between th… [+978 chars]"},{"source":{"id":null,"name":"NDTV News"},"author":"NDTV Sports Desk","title":"Shubman Gill Addresses \"Disciplinary Issue\" Rumours At T20 World Cup, It Has 'With Rohit Sharma' Connection | Cricket News - NDTV Sports","description":"Gill will leave Team India's squad at the 2024 T20 World Cup after the end of the group stage.","url":"https://sports.ndtv.com/t20-world-cup-2024/shubman-gill-addresses-disciplinary-issue-rumours-at-t20-world-cup-it-has-with-rohit-sharma-connection-5902258","urlToImage":"https://c.ndtvimg.com/2023-09/jvh7e1ro_rohit-gill_625x300_10_September_23.jpg?im=FeatureCrop,algorithm=dnn,width=1200,height=675","publishedAt":"2024-06-17T01:52:00Z","content":"India batter Shubman Gill posted a heartwarming picture on Instagram with Indian skipper Rohit Sharma and his daughter Samaira, that has sent fans into frenzy. Gill recently came into the spotlight a… [+1628 chars]"}]}
+    /*console.log(JSON.stringify(response));
+    let str="";
+    resultCount.innerHTML=response.totalResults;
+    for(let item of response.articles){
+     str= str+`<div class="card my-4 mx-2" style="width: 18rem;">
+            <img src="${item.urlToImage}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${item.title.slice(0,45)}</h5>
+              <p class="card-text">${item.description}...</p>
+              <a href="${item.url}" target="_blank"  class="btn btn-primary">Read News</a>
+            </div>
+          </div>`;
+    }
+    document.querySelector(".content").innerHTML=str;
+
+ */
+}
+fetchNews(1,"asd");
+/*
+fetchNews(currentPage,currentCate);
+    search.addEventListener("click",(e)=>{
+      e.preventDefault()
+     let cate=searchInput.value
+     currentCate=cate
+     fetchNews(currentPage,currentCate)
+
+    })
+    next.addEventListener("click",(e)=>{
+      e.preventDefault()
+      
+     currentPage=currentPage+1
+     fetchNews(currentPage,currentCate)
+
+    })
+    prev.addEventListener("click",(e)=>{
+      e.preventDefault()
+      if(currentPage>1){
+      currentPage=currentPage-1
+      
+     fetchNews(currentPage,currentCate)
+      }
+
+    })
+
+    tech.addEventListener("click",(e)=>{
+      e.preventDefault()
+     let cate="technology"
+     currentCate=cate
+     
+     fetchNews(currentPage,cate)
+
+    })
+    entertainment.addEventListener("click",(e)=>{
+      e.preventDefault()
+     let cate="technology"
+     currentCate=cate
+     fetchNews(currentPage,cate)
+
+    })
+    sports.addEventListener("click",(e)=>{
+      e.preventDefault()
+     let cate="sports"
+     currentCate=cate
+     fetchNews(currentPage,cate)
+
+    })
+    science.addEventListener("click",(e)=>{
+      e.preventDefault()
+     let cate="science"
+     currentCate=cate
+
+     fetchNews(currentPage,cate)
+
+    })
+    general.addEventListener("click",(e)=>{
+      e.preventDefault()
+     let cate="general"
+     currentCate=cate
+     fetchNews(currentPage,cate)
+
+    })*/
+
+
+  </script>
+</body>
+</html>
